@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { CSVLink, CSVDownload } from "react-csv";
+import { CSVLink } from "react-csv";
 
 
 // Firebase App (the core Firebase SDK) is always required and
@@ -26,7 +25,6 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
-// Get a reference to the database service
 
 var db = firebase.firestore();
 
@@ -35,7 +33,7 @@ let dataArrayDef = [];
 function App() {
 
   const [stateData, setState] = useState([]);
-  const [lengthData, setLength] = useState(0);
+  
 
   const inputEl = useRef(null);
 
@@ -52,15 +50,9 @@ function App() {
           return;
         }
 
-        setLength(snapshot.size)
-
         snapshot.forEach(doc => {
           let dataToArray = doc.data();
-          console.log(doc.id, '=>', JSON.stringify(dataToArray));
-          // console.log(doc.id, '=>', doc.data());
-
-          // let __data = Object.keys(dataToArray).reduce((a, b) => a.concat(dataToArray[b]), [])
-          // dataArrayDef.push(__data)
+          
 
           dataArrayDef.push(dataToArray)
         });
