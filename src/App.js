@@ -43,7 +43,7 @@ function App() {
 
 
 
-    let query = citiesRef.get()
+    citiesRef.get()
       .then(snapshot => {
         if (snapshot.empty) {
           console.log('No matching documents.');
